@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitaprash — Rooted in Tradition. Proven by Science.</title>
+<meta name="description" content="Supplements formulated by a registered pharmacist and Doctor of Ayurveda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vitaprash.css">
+<style>
+/* Page-specific overrides */
+body { cursor: none; }
+.active-nav { color: var(--gold) !important; }
+/* Smooth page transitions */
+body { animation: fadeIn .4s ease; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+/* Cart badge */
+.cart-badge {
+  position:fixed; bottom:2rem; right:2rem;
+  background:var(--gold); color:var(--ink);
+  width:52px; height:52px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:1.2rem;
+  cursor:pointer; z-index:8000;
+  box-shadow:0 4px 20px rgba(200,164,74,.3);
+  transition:transform .2s;
+  text-decoration:none;
+}
+.cart-badge:hover { transform:scale(1.08); }
+.cart-badge-count {
+  position:absolute; top:-4px; right:-4px;
+  width:20px; height:20px; background:var(--parchment);
+  color:var(--ink); border-radius:50%;
+  font-size:.55rem; font-family:var(--font-body);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:600;
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Announcement bar -->
+<div class="announcement-bar">
+  Evidence-led education · Transparent ingredient information · Product details subject to verification
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="shop.html" >Products</a>
+      <a href="journal.html" >The Journal</a>
+      <a href="science.html" >The Science</a>
+      <a href="our-story.html" >Our Story</a>
+    </nav>
+    <a href="index.html" class="logo">VITA<span>PRASH</span></a>
+    <nav class="nav-right">
+      <a href="shop.html">Shop</a>
+      <a href="cart.html" class="nav-cart" id="cartNav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">Founded by a Pharmacist · Rooted in Ayurveda</div>
+
+    <h1 class="hero-h1">
+      Where ancient wisdom
+      <em>meets clinical proof</em>
+    </h1>
+
+    <p class="hero-sub">
+      Supplements formulated by a registered Pharmacist and Ayurveda practitioner. Every ingredient clinically dosed. Every batch third-party tested. No compromises.
+    </p>
+
+    <div class="hero-actions">
+      <a href="shop.html" class="btn-primary">Shop All Products</a>
+      <a href="science.html" class="btn-outline">Read the Science</a>
+    </div>
+
+    <div class="hero-credentials">
+      <div class="hero-cred-item">
+        <div class="hero-cred-label">Qualification</div>
+        <div class="hero-cred-value">Pharmacist · MPharm</div>
+      </div>
+      <div class="hero-cred-item">
+        <div class="hero-cred-label">Qualification</div>
+        <div class="hero-cred-value">Ayurveda Practice · BSc</div>
+      </div>
+      <div class="hero-cred-item">
+        <div class="hero-cred-label">Testing</div>
+        <div class="hero-cred-value">ISO-certified · 3rd party</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Animated mandalas -->
+    <svg class="hero-mandala" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="80" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="60" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="40" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="20" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="100" y1="4" x2="100" y2="196" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="4" y1="100" x2="196" y2="100" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="22" y1="22" x2="178" y2="178" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="178" y1="22" x2="22" y2="178" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="4" y1="60" x2="196" y2="140" stroke="#c8a44a" stroke-width="0.25"/>
+      <line x1="4" y1="140" x2="196" y2="60" stroke="#c8a44a" stroke-width="0.25"/>
+      <line x1="60" y1="4" x2="140" y2="196" stroke="#c8a44a" stroke-width="0.25"/>
+      <line x1="140" y1="4" x2="60" y2="196" stroke="#c8a44a" stroke-width="0.25"/>
+      <polygon points="100,10 115,55 162,55 126,82 139,127 100,100 61,127 74,82 38,55 85,55" stroke="#c8a44a" stroke-width="0.35" fill="none"/>
+    </svg>
+
+    <svg class="hero-mandala-2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="#c8a44a" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="60" stroke="#c8a44a" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="30" stroke="#c8a44a" stroke-width="0.5"/>
+      <polygon points="100,20 120,80 180,80 132,116 150,176 100,140 50,176 68,116 20,80 80,80" stroke="#c8a44a" stroke-width="0.5" fill="none"/>
+    </svg>
+
+    <div class="hero-product-showcase">
+      <div class="hero-product-badge">Foundation Bundle</div>
+
+      <div class="hero-product-circle">
+        <div class="product-icon-inner">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="28" y="14" width="24" height="52" rx="12" stroke="#c8a44a" stroke-width="1.2" fill="rgba(200,164,74,0.08)"/>
+            <line x1="28" y1="32" x2="52" y2="32" stroke="#c8a44a" stroke-width="0.8" opacity="0.5"/>
+            <circle cx="40" cy="23" r="3" fill="rgba(200,164,74,0.4)"/>
+            <circle cx="40" cy="40" r="2" fill="rgba(200,164,74,0.3)"/>
+            <circle cx="40" cy="54" r="2" fill="rgba(200,164,74,0.3)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-quote-block">
+        <p class="hero-quote-text">"What tradition knew,<br>science has proven."</p>
+        <span class="hero-quote-cite">The Vitaprash founding principle</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M18 3L4 9v10c0 8 6 14 14 17 8-3 14-9 14-17V9L18 3z"/>
+        <polyline points="13,18 17,22 23,14"/>
+      </svg>
+      <div>
+        <div class="trust-label">Third-party tested</div>
+        <div class="trust-desc">Certificate of Analysis published for every batch, every product</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="18" cy="18" r="14"/>
+        <path d="M14 18l3 3 6-6"/>
+      </svg>
+      <div>
+        <div class="trust-label">Clinically dosed</div>
+        <div class="trust-desc">Quantities matched to peer-reviewed research — never underdosed for label appeal</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="6" y="6" width="24" height="24" rx="2"/>
+        <path d="M12 12h12M12 18h12M12 24h8"/>
+      </svg>
+      <div>
+        <div class="trust-label">Evidence cited</div>
+        <div class="trust-desc">Peer-reviewed references linked on every product page</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M18 3v10M18 23v10M3 18h10M23 18h10"/>
+        <circle cx="18" cy="18" r="6"/>
+      </svg>
+      <div>
+        <div class="trust-label">Dual expertise</div>
+        <div class="trust-desc">Formulated by a pharmacist (MPharm) and Doctor of Ayurveda (BAMS)</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M18 5l2.7 8.3H29l-7 5.1 2.7 8.3L18 22l-6.7 4.7 2.7-8.3-7-5.1h8.3z"/>
+      </svg>
+      <div>
+        <div class="trust-label">Free UK shipping</div>
+        <div class="trust-desc">On all orders, every time — no minimum spend</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<section class="products-section reveal">
+  <div class="products-header">
+    <div class="products-header-left">
+      <div class="section-kicker">The range</div>
+      <h2 class="section-heading">Evidence-backed<br><em>formulations</em></h2>
+    </div>
+    <a href="shop.html" class="products-header-right">
+      View all products
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+        <div class="product-filters">
+        <button class="filter-tab active" onclick="filterProducts('all', this)">All Products</button>
+        <button class="filter-tab" onclick="filterProducts('vitamins', this)">Vitamins &amp; Minerals</button>
+        <button class="filter-tab" onclick="filterProducts('omega', this)">Omega Fatty Acids</button>
+        <button class="filter-tab" onclick="filterProducts('botanical', this)">Botanical</button>
+      </div>
+
+      <div class="products-grid" id="homeProductGrid">
+
+        <!-- Product 1 -->
+        <div class="product-card" data-category="vitamins">
+          <div class="product-card-image">
+            <div class="product-badge">Bestseller</div>
+            <svg class="product-mandala" viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#c8a44a" stroke-width="0.6"/>
+              <circle cx="100" cy="100" r="55" stroke="#c8a44a" stroke-width="0.6"/>
+              <circle cx="100" cy="100" r="30" stroke="#c8a44a" stroke-width="0.6"/>
+              <line x1="20" y1="100" x2="180" y2="100" stroke="#c8a44a" stroke-width="0.5"/>
+              <line x1="100" y1="20" x2="100" y2="180" stroke="#c8a44a" stroke-width="0.5"/>
+            </svg>
+            <button class="product-quick-add"
+              data-product-id="d3k2"
+              data-product-name="Vitamin D3 + K2 MK-7"
+              data-product-price="18"
+              data-product-form="Capsule"
+              data-orig-text="+"
+              title="Add to cart">+</button>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Vitamins &amp; Minerals</div>
+            <div class="product-name"><a href="product.html?id=d3k2">Vitamin D3 + <em>K2 MK-7</em></a></div>
+            <div class="product-desc">2000 IU cholecalciferol + 90mcg MK-7. The synergistic pair that directs calcium where it belongs.</div>
+            <div class="product-footer">
+              <div class="product-price">£18<span class="product-price-sub"> / 60 caps</span></div>
+              <div class="product-form">Capsule</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-category="vitamins">
+          <div class="product-card-image">
+            <svg class="product-mandala" viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#4e7060" stroke-width="0.6"/>
+              <circle cx="100" cy="100" r="55" stroke="#4e7060" stroke-width="0.6"/>
+              <circle cx="100" cy="100" r="30" stroke="#4e7060" stroke-width="0.6"/>
+              <polygon points="100,25 155,70 135,135 65,135 45,70" stroke="#4e7060" stroke-width="0.5" fill="none"/>
+            </svg>
+            <button class="product-quick-add"
+              data-product-id="mag"
+              data-product-name="Magnesium Glycinate"
+              data-product-price="22"
+              data-product-form="Capsule"
+              data-orig-text="+"
+              title="Add to cart">+</button>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Minerals</div>
+            <div class="product-name"><a href="product.html?id=mag">Magnesium <em>Glycinate</em></a></div>
+            <div class="product-desc">400mg elemental magnesium in glycinate form — 80%+ bioavailability. For sleep, stress and muscle recovery.</div>
+            <div class="product-footer">
+              <div class="product-price">£22<span class="product-price-sub"> / 60 caps</span></div>
+              <div class="product-form">Capsule</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-category="omega">
+          <div class="product-card-image">
+            <svg class="product-mandala" viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#2f6080" stroke-width="0.6"/>
+              <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#2f6080" stroke-width="0.4"/>
+              <ellipse cx="100" cy="100" rx="30" ry="80" stroke="#2f6080" stroke-width="0.4"/>
+              <circle cx="100" cy="100" r="20" stroke="#2f6080" stroke-width="0.8"/>
+            </svg>
+            <button class="product-quick-add"
+              data-product-id="omega"
+              data-product-name="Omega-3 EPA/DHA"
+              data-product-price="28"
+              data-product-form="Softgel"
+              data-orig-text="+"
+              title="Add to cart">+</button>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Omega Fatty Acids</div>
+            <div class="product-name"><a href="product.html?id=omega">Omega-3 <em>EPA/DHA</em></a></div>
+            <div class="product-desc">2g ultra-pure fish oil · 1200mg EPA + 600mg DHA. Molecularly distilled. Meets REDUCE-IT trial therapeutic threshold.</div>
+            <div class="product-footer">
+              <div class="product-price">£28<span class="product-price-sub"> / 60 caps</span></div>
+              <div class="product-form">Softgel</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-category="botanical">
+          <div class="product-card-image">
+            <div class="product-badge">New</div>
+            <svg class="product-mandala" viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="80" stroke="#c87010" stroke-width="0.6"/>
+              <polygon points="100,20 120,80 180,80 132,116 150,176 100,140 50,176 68,116 20,80 80,80" stroke="#c87010" stroke-width="0.5" fill="none"/>
+            </svg>
+            <button class="product-quick-add"
+              data-product-id="curcumin"
+              data-product-name="Longvida® Curcumin"
+              data-product-price="32"
+              data-product-form="Capsule"
+              data-orig-text="+"
+              title="Add to cart">+</button>
+          </div>
+          <div class="product-info">
+            <div class="product-category">Botanical · Ayurvedic</div>
+            <div class="product-name"><a href="product.html?id=curcumin">Longvida® <em>Curcumin</em></a></div>
+            <div class="product-desc">500mg Longvida® optimised curcumin — 285× more bioavailable than standard turmeric.</div>
+            <div class="product-footer">
+              <div class="product-price">£32<span class="product-price-sub"> / 60 caps</span></div>
+              <div class="product-form">Capsule</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+  </section>
+
+<!-- ══ BUNDLE PROMO ══ -->
+<div class="bundle-section reveal">
+  <div class="bundle-left">
+    <div class="bundle-kicker">Most popular · Save £20</div>
+    <h2 class="bundle-heading">The Foundation <em>Bundle</em></h2>
+    <p class="bundle-desc">Four clinically dosed formulas that work together — the core of evidence-based supplementation. Built around what the research actually supports.</p>
+
+    <ul class="bundle-includes">
+      <li>Vitamin D3 + K2 MK-7 · 60 capsules</li>
+      <li>Magnesium Glycinate · 60 capsules</li>
+      <li>Omega-3 EPA/DHA · 60 softgels</li>
+      <li>Longvida® Curcumin · 60 capsules</li>
+    </ul>
+
+    <div class="bundle-pricing">
+      <div class="bundle-price">£80</div>
+      <div class="bundle-compare">£100</div>
+      <div class="bundle-save">Save 20%</div>
+    </div>
+
+    <button type="button" class="btn-primary" data-product-id="foundation-bundle" data-product-name="The Foundation Bundle" data-product-price="80" data-product-form="Bundle" data-orig-text="Add Bundle to Cart">Add Bundle to Cart</button>
+  </div>
+
+  <div class="bundle-right">
+    <div class="bundle-item-card">
+      <svg class="bundle-item-icon" viewBox="0 0 50 50" fill="none">
+        <circle cx="25" cy="25" r="22" stroke="#c8a44a" stroke-width="1"/>
+        <text x="25" y="30" text-anchor="middle" fill="#c8a44a" font-size="12" font-family="serif">D3</text>
+      </svg>
+      <div class="bundle-item-name">D3 + K2</div>
+      <div class="bundle-item-sub">60 capsules</div>
+    </div>
+    <div class="bundle-item-card">
+      <svg class="bundle-item-icon" viewBox="0 0 50 50" fill="none">
+        <circle cx="25" cy="25" r="22" stroke="#4e7060" stroke-width="1"/>
+        <text x="25" y="30" text-anchor="middle" fill="#4e7060" font-size="10" font-family="serif">Mg</text>
+      </svg>
+      <div class="bundle-item-name">Magnesium</div>
+      <div class="bundle-item-sub">60 capsules</div>
+    </div>
+    <div class="bundle-item-card">
+      <svg class="bundle-item-icon" viewBox="0 0 50 50" fill="none">
+        <ellipse cx="25" cy="25" rx="22" ry="14" stroke="#2f6080" stroke-width="1"/>
+        <text x="25" y="30" text-anchor="middle" fill="#2f6080" font-size="9" font-family="serif">ω3</text>
+      </svg>
+      <div class="bundle-item-name">Omega-3</div>
+      <div class="bundle-item-sub">60 softgels</div>
+    </div>
+    <div class="bundle-item-card">
+      <svg class="bundle-item-icon" viewBox="0 0 50 50" fill="none">
+        <polygon points="25,5 45,40 5,40" stroke="#c87010" stroke-width="1" fill="none"/>
+        <text x="25" y="35" text-anchor="middle" fill="#c87010" font-size="8" font-family="serif">Cur</text>
+      </svg>
+      <div class="bundle-item-name">Curcumin</div>
+      <div class="bundle-item-sub">60 capsules</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DUAL HERITAGE ══ -->
+<section class="heritage-section reveal">
+  <div class="heritage-panel">
+    <div class="heritage-num">3000</div>
+    <div class="heritage-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M20 4c-8 4-14 10-14 18s6 10 14 10 14-2 14-10S28 8 20 4z"/>
+        <path d="M20 4v28M6 16h28"/>
+      </svg>
+    </div>
+    <div class="heritage-kicker">Ayurvedic tradition</div>
+    <h3 class="heritage-title">Three thousand years<br>of <em>empirical medicine</em></h3>
+    <p class="heritage-body">Ayurveda is not mysticism. It is the accumulated record of clinical observation across millennia — a tradition that documented what worked, refined it across generations, and encoded its findings into a system of remarkable sophistication.</p>
+    <div class="heritage-pull">
+      <p>"Ancient physicians prescribed turmeric in fat because it worked. In 2024, scientists mapped the exact molecular mechanism — Longvida® lipid particle delivery."</p>
+    </div>
+    <a href="our-story.html" class="heritage-link">
+      Explore the Ayurvedic tradition
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="heritage-panel">
+    <div class="heritage-num">RCT</div>
+    <div class="heritage-icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="6" y="6" width="28" height="28" rx="2"/>
+        <path d="M12 20h4l3-8 4 16 3-10 3 2h3"/>
+      </svg>
+    </div>
+    <div class="heritage-kicker">Clinical evidence</div>
+    <h3 class="heritage-title">Every dose justified<br>by <em>peer-reviewed data</em></h3>
+    <p class="heritage-body">As a registered pharmacist, I read studies critically — the funding source, the effect size, the dose used, the population studied. The supplement industry rarely holds itself to this standard. Vitaprash does.</p>
+    <div class="heritage-pull">
+      <p>"Our magnesium glycinate is dosed at 400mg elemental — the level used in clinical sleep trials. Not 50mg. Not 100mg. The dose that the research actually supports."</p>
+    </div>
+    <a href="science.html" class="heritage-link">
+      Read the evidence
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══ PRINCIPLES ══ -->
+<div class="principles-strip reveal">
+  <div class="principle-cell">
+    <div class="principle-num">I</div>
+    <div class="principle-roman">I</div>
+    <div class="principle-title">Evidence before everything</div>
+    <p class="principle-desc">No ingredient enters a Vitaprash formula without clinical validation at a meaningful dose. Heritage informs the question. Science answers it.</p>
+  </div>
+  <div class="principle-cell">
+    <div class="principle-num">II</div>
+    <div class="principle-roman">II</div>
+    <div class="principle-title">Full transparency, always</div>
+    <p class="principle-desc">Published COAs. Cited studies. Clear dosage rationale. Honest statements about what each product will — and will not — do for you.</p>
+  </div>
+  <div class="principle-cell">
+    <div class="principle-num">III</div>
+    <div class="principle-roman">III</div>
+    <div class="principle-title">Dual knowledge, one standard</div>
+    <p class="principle-desc">Every formula draws on both pharmacological and Ayurvedic training. Two bodies of knowledge, held to one rigorous standard of evidence.</p>
+  </div>
+</div>
+
+<!-- ══ JOURNAL ══ -->
+<section class="journal-section reveal">
+  <div class="journal-header">
+    <div>
+      <div class="section-kicker">The Journal</div>
+      <h2 class="section-heading">Science, tradition<br>& <em>honest opinion</em></h2>
+    </div>
+    <a href="journal.html" style="font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:.6rem;">
+      All articles
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="journal-grid">
+    <!-- Featured -->
+    <div class="journal-card featured">
+      <span class="cat-pill science">Clinical Science</span>
+      <h3 class="article-title large">The REDUCE-IT trial: what 8,179 patients taught us about <em>omega-3 dosing</em> — and why your fish oil probably isn't working</h3>
+      <p class="article-excerpt">The landmark cardiovascular trial used 4g of EPA daily. Most fish oil supplements contain 180mg. That gap — twenty-fold — is the difference between a clinically meaningful intervention and an expensive placebo.</p>
+      <div class="article-footer">
+        <div class="article-meta">10 min read · May 2025</div>
+        <a href="article.html?id=omega3" class="article-read">
+          Read
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Side articles -->
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <div class="journal-card" style="flex:1;">
+        <span class="cat-pill ayurveda">Ayurvedic Tradition</span>
+        <h3 class="article-title">Atapa Seva: what Ayurveda's sun practice tells us about <em>vitamin D</em></h3>
+        <p class="article-excerpt">Ancient physicians prescribed deliberate sun exposure for bone health. Modern science has mapped the exact mechanism — cholecalciferol synthesis.</p>
+        <div class="article-footer">
+          <div class="article-meta">6 min · April 2025</div>
+          <a href="article.html?id=atapa" class="article-read">Read <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+
+      <div class="journal-card" style="flex:1;">
+        <span class="cat-pill transparency">Industry Transparency</span>
+        <h3 class="article-title">Proprietary blends: the supplement industry's most effective <em>deception</em></h3>
+        <p class="article-excerpt">When a label says "proprietary blend 500mg" — you have no idea what you're actually taking. A pharmacist explains why this matters.</p>
+        <div class="article-footer">
+          <div class="article-meta">7 min · April 2025</div>
+          <a href="article.html?id=blends" class="article-read">Read <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Third column -->
+    <div class="journal-card">
+      <span class="cat-pill formulation">Formulation Notes</span>
+      <h3 class="article-title">Why we chose MK-7 over MK-4 — and what the <em>72-hour half-life</em> means for you</h3>
+      <p class="article-excerpt">Two forms of K2. Very different pharmacokinetics. One clear answer — with the data to show why.</p>
+      <div class="article-footer">
+        <div class="article-meta">4 min · March 2025</div>
+        <a href="journal.html" class="article-read">Read <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-section reveal">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-kicker" style="justify-content:center;">Customer reviews</div>
+      <h2 class="section-heading" style="text-align:center;">What our customers <em>say</em></h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"I've tried probably a dozen magnesium supplements. This is the first one I've actually noticed working. The difference in my sleep quality was measurable within two weeks."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Sarah K.</div>
+          <div class="testimonial-detail">Verified purchaser · Magnesium Glycinate</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"The transparency is remarkable. I can read the actual studies they cite. As someone with a science background, this is exactly what I've been looking for in a supplement brand."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Dr. Marcus T.</div>
+          <div class="testimonial-detail">Verified purchaser · Foundation Bundle</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-quote">"The COA is linked right there on the product page — not hidden, not on request. That alone tells you everything you need to know about this company's values."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-name">Priya M.</div>
+          <div class="testimonial-detail">Verified purchaser · D3 + K2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOUNDER ══ -->
+<section class="founder-section reveal">
+  <div class="founder-visual">
+    <svg class="founder-mandala" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="90" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="70" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="50" stroke="#c8a44a" stroke-width="0.4"/>
+      <circle cx="100" cy="100" r="30" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="10" y1="100" x2="190" y2="100" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="#c8a44a" stroke-width="0.4"/>
+      <line x1="27" y1="27" x2="173" y2="173" stroke="#c8a44a" stroke-width="0.3"/>
+      <line x1="173" y1="27" x2="27" y2="173" stroke="#c8a44a" stroke-width="0.3"/>
+    </svg>
+
+    <div class="founder-portrait-placeholder">
+      <div class="founder-portrait-initials">V</div>
+      <div class="founder-portrait-name">Vitaprash Founder</div>
+      <div class="founder-portrait-quals">
+        MPharm · Registered Pharmacist<br>
+        BAMS · Doctor of Ayurveda
+      </div>
+    </div>
+  </div>
+
+  <div class="founder-text">
+    <div class="founder-kicker">From the founder</div>
+    <h2 class="founder-heading">Why I built<br>a supplement brand<br>that tells you what it <em>won't do</em></h2>
+
+    <p class="founder-body">
+      Every product page on Vitaprash has a section called <strong>"What this product will not do."</strong> My team initially questioned it. Who volunteers their product's limitations?
+    </p>
+    <p class="founder-body">
+      I do. Because I'm a pharmacist. In a clinical setting, informed consent isn't optional — patients have the right to understand both what a treatment can offer and where its evidence ends. <strong>I don't see why supplements should be different.</strong>
+    </p>
+    <p class="founder-body">
+      The industry has built its entire model on overstating efficacy and understating uncertainty. Vague claims, cherry-picked studies, doses far below what the research actually used. This journal — and these products — exist to do the opposite.
+    </p>
+
+    <div class="founder-sig">
+      "Honest health information is not a threat to a well-formulated product. <strong>It's the point.</strong>"
+      <br>— Founder, Vitaprash · MPharm · BAMS
+    </div>
+
+    <div style="margin-top:2.5rem; display:flex; gap:1.2rem;">
+      <a href="our-story.html" class="btn-outline">Our story</a>
+      <a href="science.html" class="btn-outline">The evidence</a>
+    </div>
+  </div>
+</section>
+
+<script>
+function filterProducts(cat, btn) {
+  document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+  btn.classList.add("active");
+  document.querySelectorAll("#homeProductGrid .product-card").forEach(card => {
+    card.style.display = (cat === "all" || card.dataset.category === cat) ? "" : "none";
+  });
+}
+</script>
+
+<!-- Newsletter -->
+<section class="newsletter-section">
+  <div class="nl-left">
+    <div class="section-kicker">The monthly dispatch</div>
+    <h2 class="nl-heading">Evidence delivered<br>to your inbox.<br><em>No noise.</em></h2>
+    <p class="nl-desc">Once a month: one deep article on supplement science or Ayurvedic tradition, one honest take on something the industry is getting wrong, and the evidence behind our latest formulations. Written by a pharmacist. Unsponsored.</p>
+  </div>
+  <div class="nl-right">
+    <form class="nl-form" onsubmit="handleNewsletter(event)">
+      <input type="text" class="nl-input" placeholder="Your first name" id="nlName">
+      <input type="email" class="nl-input" placeholder="Your email address" id="nlEmail" required>
+      <button class="nl-submit" type="submit">Subscribe to the Journal</button>
+      <div class="nl-promise">One email per month. No promotions, no third-party sharing. Unsubscribe in one click.</div>
+      <p class="nl-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">VITA<span>PRASH</span></div>
+      <div class="footer-tagline">Rooted in tradition. Proven by science.</div>
+      <p class="footer-about">Supplements formulated by a registered pharmacist and Ayurveda doctor. Clinical dosing, full transparency, and a genuine bridge between ancient wisdom and modern evidence.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <div class="footer-links">
+        <a href="shop.html">All Products</a>
+        <a href="product.html?id=d3k2">Vitamin D3 + K2</a>
+        <a href="product.html?id=mag">Magnesium Glycinate</a>
+        <a href="product.html?id=omega">Omega-3 EPA/DHA</a>
+        <a href="product.html?id=curcumin">Longvida® Curcumin</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Journal</div>
+      <div class="footer-links">
+        <a href="journal.html">All Articles</a>
+        <a href="article.html?id=omega3">Clinical Science</a>
+        <a href="article.html?id=atapa">Ayurvedic Tradition</a>
+        <a href="article.html?id=blends">Industry Transparency</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="our-story.html">Our Story</a>
+        <a href="science.html">The Evidence</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Vitaprash Ltd · vitaprash.co.uk · Registered in England & Wales</span>
+    <span>Longvida® is a registered trademark of Verdure Sciences, Inc.</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/vitaprash.js"></script>
+<script src="js/cart.js"></script>
+<script>
+function handleNewsletter(e) {
+  e.preventDefault();
+  var form = e.target;
+  var note = form.querySelector(".nl-status");
+  if (!note) { note = document.createElement("p"); note.className = "nl-status"; note.setAttribute("role", "status"); form.appendChild(note); }
+  note.textContent = "Newsletter sign-up is not connected yet. Your email has not been submitted."; 
+}
+</script>
+</body>
+</html>

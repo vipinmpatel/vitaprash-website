@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Vitaprash</title>
+<meta name="description" content="Clinically dosed supplement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vitaprash.css">
+<style>
+/* Page-specific overrides */
+body { cursor: none; }
+.active-nav { color: var(--gold) !important; }
+/* Smooth page transitions */
+body { animation: fadeIn .4s ease; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+/* Cart badge */
+.cart-badge {
+  position:fixed; bottom:2rem; right:2rem;
+  background:var(--gold); color:var(--ink);
+  width:52px; height:52px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:1.2rem;
+  cursor:pointer; z-index:8000;
+  box-shadow:0 4px 20px rgba(200,164,74,.3);
+  transition:transform .2s;
+  text-decoration:none;
+}
+.cart-badge:hover { transform:scale(1.08); }
+.cart-badge-count {
+  position:absolute; top:-4px; right:-4px;
+  width:20px; height:20px; background:var(--parchment);
+  color:var(--ink); border-radius:50%;
+  font-size:.55rem; font-family:var(--font-body);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:600;
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Announcement bar -->
+<div class="announcement-bar">
+  Evidence-led education · Transparent ingredient information · Product details subject to verification
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="shop.html" class="active-nav">Products</a>
+      <a href="journal.html" >The Journal</a>
+      <a href="science.html" >The Science</a>
+      <a href="our-story.html" >Our Story</a>
+    </nav>
+    <a href="index.html" class="logo">VITA<span>PRASH</span></a>
+    <nav class="nav-right">
+      <a href="shop.html">Shop</a>
+      <a href="cart.html" class="nav-cart" id="cartNav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+
+<div style="padding:1.5rem 4rem;background:var(--ink-2);border-bottom:1px solid var(--gold-line);font-size:.7rem;color:var(--muted)">
+  <a href="index.html" style="color:var(--muted)">Home</a> <span style="color:var(--gold)">✦</span>
+  <a href="shop.html" style="color:var(--muted)">Products</a> <span style="color:var(--gold)">✦</span>
+  <span id="breadcrumb-title"></span>
+</div>
+
+<section style="max-width:1200px;margin:0 auto;padding:1.5rem 4rem 0">
+  <div style="border:1px solid var(--gold-line);background:var(--ink-2);padding:1.2rem 1.5rem;color:var(--muted);font-size:.82rem;line-height:1.8">
+    <strong style="color:var(--gold)">Product information note:</strong> Product names, prices, serving sizes, ingredients, testing statements and availability shown here are draft catalogue data. They must be checked against final specifications, labels and supporting records before the page is used to market or sell a product. The basket is a demonstration only; checkout and payment are not connected.
+  </div>
+</section>
+
+<div id="product-page-content" style="padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;max-width:1400px;margin:0 auto">
+  <!-- Populated by JS -->
+</div>
+
+<section style="padding:4rem;border-top:1px solid var(--gold-line)">
+  <div class="section-kicker">You may also like</div>
+  <h2 class="section-heading" style="margin-bottom:3rem">Related <em>formulations</em></h2>
+  <div class="products-grid" id="related-products"></div>
+</section>
+
+<script>
+const PRODUCTS = [{"id": "d3k2", "name": "Vitamin D3 + K2 MK-7", "price": 18, "form": "Capsule", "color": "#c8a44a", "category": "Vitamins & Minerals", "badge": "Bestseller", "desc": "2000 IU cholecalciferol + 90mcg MK-7 menaquinone. A combination of vitamin D3 and vitamin K2. Confirm the final formulation and permitted claims before publication.", "long": "Vitamin D contributes to normal calcium absorption and maintenance of normal bones. Evidence for combined D3 and K2 products depends on the specific outcome studied; avoid interpreting mechanistic hypotheses as proof that a supplement prevents arterial calcification. Confirm the ingredient source, dose and final label before sale.", "studies": ["Kanellakis S et al., Eur J Clin Nutr 2012", "Pilz S et al., Anticancer Res 2009"], "tradition": "Atapa Seva — Ayurvedic sun practice"}, {"id": "mag", "name": "Magnesium Glycinate", "price": 22, "form": "Capsule", "color": "#4e7060", "category": "Minerals", "badge": "", "desc": "Magnesium glycinate. Confirm the elemental magnesium amount per serving and approved product wording before publication.", "long": "Evidence for magnesium supplements and sleep is mixed and depends on the population, formulation and study design. Do not present a particular dose as a proven treatment for sleep or anxiety without directly applicable evidence. People with kidney impairment should seek professional advice before taking magnesium supplements.", "studies": ["Abbasi B et al., J Res Med Sci 2012", "Held K et al., Pharmacopsychiatry 2002"], "tradition": "Shilajatu — ancient mineral resin therapy"}, {"id": "omega", "name": "Omega-3 EPA/DHA", "price": 28, "form": "Softgel", "color": "#2f6080", "category": "Omega Fatty Acids", "badge": "", "desc": "Omega-3 product listing. Verify the actual EPA/DHA amounts, source, oxidation/purity testing and allergen information before publication.", "long": "REDUCE-IT studied prescription icosapent ethyl (purified EPA) in a specific high-risk population. Its results cannot be directly transferred to ordinary fish-oil supplements containing EPA and DHA. Verify the product specification and do not imply equivalence to prescription treatment.", "studies": ["Bhatt DL et al. (REDUCE-IT), NEJM 2019", "ORIGIN Trial Investigators, NEJM 2012"], "tradition": "Matsya — fish as medicine in Charaka Samhita"}, {"id": "curcumin", "name": "Longvida® Curcumin", "price": 32, "form": "Capsule", "color": "#c87010", "category": "Botanical · Ayurvedic", "badge": "New", "desc": "Curcumin formulation. Any comparative bioavailability statement must be supported by a study of the exact ingredient, formulation, dose and comparator.", "long": "Curcumin formulations differ in how they are absorbed. A bioavailability multiplier from one study does not establish greater clinical benefit and should only be used when the exact comparison is substantiated. Traditional use does not prove a modern product's efficacy.", "studies": ["Gota VS et al., J Agric Food Chem 2010", "Small GW et al., Am J Geriatr Psychiatry 2018"], "tradition": "Haridra — turmeric in Ayurvedic medicine for 4,000 years"}];
+const params = new URLSearchParams(location.search);
+const id = params.get('id') || 'd3k2';
+const p = PRODUCTS.find(x => x.id === id) || PRODUCTS[0];
+
+document.getElementById('breadcrumb-title').textContent = p.name;
+document.title = p.name + ' — Vitaprash';
+
+document.getElementById('product-page-content').innerHTML = `
+  <div style="background:var(--ink-2);border:1px solid var(--gold-line);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+    <svg style="width:220px;height:220px;opacity:.15;animation:rotateSlow 60s linear infinite" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="90" stroke="${p.color}" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="70" stroke="${p.color}" stroke-width="0.5"/>
+      <circle cx="100" cy="100" r="50" stroke="${p.color}" stroke-width="0.5"/>
+      <line x1="10" y1="100" x2="190" y2="100" stroke="${p.color}" stroke-width="0.4"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="${p.color}" stroke-width="0.4"/>
+    </svg>
+  </div>
+  <div>
+    <div style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:.8rem">${p.category}</div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:var(--parchment);margin-bottom:1rem">${p.name}</h1>
+    <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--parchment);margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--gold-line)">
+      £${p.price} <span style="font-size:.9rem;color:var(--muted);font-family:var(--font-body)">/ 60 ${p.form}s</span>
+    </div>
+    <p style="font-size:.95rem;line-height:1.9;color:var(--muted);margin-bottom:2rem">${p.long}</p>
+
+    <div style="background:var(--gold-glow);border-left:2px solid var(--gold);padding:1.2rem 1.5rem;margin-bottom:1.5rem">
+      <div class="section-kicker" style="margin-bottom:.5rem">Ayurvedic tradition</div>
+      <p style="font-size:.88rem;color:rgba(244,239,230,.7)">${p.tradition}</p>
+    </div>
+
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem">Research references</div>
+      ${p.studies.map(s => '<p style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem;padding:.5rem;border-left:1px solid var(--gold-line)">✦ ' + s + '</p>').join('')}
+    </div>
+
+    <button onclick="VPCart.add({id:p.id, name:p.name, price:p.price, form:p.form})"
+      class="btn-primary" style="width:100%;margin-top:1.5rem;cursor:pointer;border:none;font-family:var(--font-body)">
+      Add to Cart — £${p.price}
+    </button>
+
+    <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:.8rem">
+      <div style="display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:var(--muted)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        Testing and batch documentation: publish only when verified
+      </div>
+      <div style="display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:var(--muted)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.3"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Delivery terms to be confirmed before launch
+      </div>
+      <div style="display:flex;align-items:center;gap:.8rem;font-size:.8rem;color:var(--muted)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.3"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg>
+        Returns policy to be confirmed before launch
+      </div>
+    </div>
+  </div>
+`;
+
+// Related products
+const related = PRODUCTS.filter(x => x.id !== id).slice(0, 3);
+document.getElementById('related-products').innerHTML = related.map(rp => `
+  <div class="product-card">
+    <div class="product-card-image">
+      <svg class="product-mandala" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="80" stroke="${rp.color}" stroke-width="0.6"/>
+        <circle cx="100" cy="100" r="55" stroke="${rp.color}" stroke-width="0.5"/>
+      </svg>
+      <button class="product-quick-add" data-product-id="${rp.id}" data-product-name="${rp.name}" data-product-price="${rp.price}" data-orig-text="+">+</button>
+    </div>
+    <div class="product-info">
+      <div class="product-name"><a href="product.html?id=${rp.id}">${rp.name}</a></div>
+      <div class="product-footer"><div class="product-price">£${rp.price}</div></div>
+    </div>
+  </div>
+`).join('');
+</script>
+
+<!-- Newsletter -->
+<section class="newsletter-section">
+  <div class="nl-left">
+    <div class="section-kicker">The monthly dispatch</div>
+    <h2 class="nl-heading">Evidence delivered<br>to your inbox.<br><em>No noise.</em></h2>
+    <p class="nl-desc">Once a month: one deep article on supplement science or Ayurvedic tradition, one honest take on something the industry is getting wrong, and the evidence behind our latest formulations. Written by a pharmacist. Unsponsored.</p>
+  </div>
+  <div class="nl-right">
+    <form class="nl-form" onsubmit="handleNewsletter(event)">
+      <input type="text" class="nl-input" placeholder="Your first name" id="nlName">
+      <input type="email" class="nl-input" placeholder="Your email address" id="nlEmail" required>
+      <button class="nl-submit" type="submit">Subscribe to the Journal</button>
+      <div class="nl-promise">One email per month. No promotions, no third-party sharing. Unsubscribe in one click.</div>
+      <p class="nl-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">VITA<span>PRASH</span></div>
+      <div class="footer-tagline">Rooted in tradition. Proven by science.</div>
+      <p class="footer-about">Supplements formulated by a registered pharmacist and Ayurveda doctor. Clinical dosing, full transparency, and a genuine bridge between ancient wisdom and modern evidence.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <div class="footer-links">
+        <a href="shop.html">All Products</a>
+        <a href="product.html?id=d3k2">Vitamin D3 + K2</a>
+        <a href="product.html?id=mag">Magnesium Glycinate</a>
+        <a href="product.html?id=omega">Omega-3 EPA/DHA</a>
+        <a href="product.html?id=curcumin">Longvida® Curcumin</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">The Journal</div>
+      <div class="footer-links">
+        <a href="journal.html">All Articles</a>
+        <a href="article.html?id=omega3">Clinical Science</a>
+        <a href="article.html?id=atapa">Ayurvedic Tradition</a>
+        <a href="article.html?id=blends">Industry Transparency</a>
+        <a href="article.html?id=magnesium-evidence">Magnesium & Sleep</a>
+        <a href="article.html?id=curcumin-bioavailability">Curcumin Bioavailability</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="our-story.html">Our Story</a>
+        <a href="science.html">The Evidence</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Vitaprash Ltd · vitaprash.co.uk · Registered in England & Wales</span>
+    <span>Longvida® is a registered trademark of Verdure Sciences, Inc.</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+  </div>
+</footer>
+
+<script src="js/vitaprash.js"></script>
+<script src="js/cart.js"></script>
+<script>
+function handleNewsletter(e) {
+  e.preventDefault();
+  var form = e.target;
+  var note = form.querySelector(".nl-status");
+  if (!note) { note = document.createElement("p"); note.className = "nl-status"; note.setAttribute("role", "status"); form.appendChild(note); }
+  note.textContent = "Newsletter sign-up is not connected yet. Your email has not been submitted."; 
+}
+</script>
+</body>
+</html>
